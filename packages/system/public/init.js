@@ -16,9 +16,17 @@ for (var index in window.modules) {
   packageModules.push(window.modules[index].module);
 }
 
+// Dynamically add themes (parent and the discovered client associated theme)
+var themeModules = [];
+for (var index in window.themes) {
+  angular.module(window.themes[index].module, window.themes[index].angularDependencies || []);
+  themeModules.push(window.themes[index].module);
+}
+
 // Default modules
 var modules = ['ngCookies', 'ngResource', 'ui.bootstrap', 'ui.router'];
 modules = modules.concat(packageModules);
+modules = modules.concat(themeModules);
 
 // Combined modules
 angular.module('mean', modules);

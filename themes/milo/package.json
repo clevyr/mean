@@ -1,0 +1,16 @@
+{
+  "name": "milo",
+  "version": "0.0.1",
+  "description": "Base theme package",
+  "author": {
+    "name": "Clevyr"
+  },
+  "mean": "0.4.x",
+  "theme": true,
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

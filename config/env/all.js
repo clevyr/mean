@@ -43,5 +43,9 @@ module.exports = {
   },
 
   // The session cookie name
-  sessionName: 'connect.sid'
+  sessionName: 'connect.sid',
+  // The apps parent theme (System Theme)
+  parentTheme: 'milo',
+  // child theme
+  childTheme: 'jason'
 };

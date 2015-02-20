@@ -78,6 +78,7 @@ module.exports = function(app, passport, db) {
 
   // Add assets to local variables
   app.use(function(req, res, next) {
+      console.log('LOCAL ' + res.locals.test);
     //res.locals.assets = assets;
     res.locals.aggregatedassets = {header:{},footer:{}};
 

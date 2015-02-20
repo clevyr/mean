@@ -1,4 +1,8 @@
 <section class="welcome container-fluid" data-ng-controller="IndexController">
+    <a ui-sref="main.teststaticdd">Static Page from Parent Theme Milo with Layout Main</a><br>
+    <a ui-sref="teststatic">Static Page from Parent Theme Milo without a layout</a><br>
+    <a ui-sref="main.myroutestatic|teststatic">Static Page from Child Theme Jason with Layout Main from Milo</a><br>
+    <a ui-sref="myroutestatic|teststatic">Static Page from Child Theme Jason without a layout</a><br>
   <div class="col-md-12 first">
     MEAN.io makes building apps simpler and faster. With this website framework, you can <a href="https://github.com/linnovate/mean/wiki/CLI#user-management">create members</a>, </br>
     articles, or <a href="http://mean.io/#!/packages">add more features</a> with a package from the community.
