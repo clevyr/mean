@@ -47,5 +47,5 @@ module.exports = {
   // The apps parent theme (System Theme)
   parentTheme: 'milo',
   // child theme
-  childTheme: 'jason'
+  childTheme: 'p2'
 };

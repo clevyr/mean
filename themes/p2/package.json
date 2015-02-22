@@ -1,0 +1,16 @@
+{
+  "name": "p2",
+  "version": "0.0.1",
+  "description": "Test Child Theme Package",
+  "author": {
+    "name": "Clevyr"
+  },
+  "mean": "0.4.x",
+  "theme": true,
+  "engines": {
+    "node": "0.10.x",
+    "npm": "1.4.x"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}
