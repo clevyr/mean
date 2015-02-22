@@ -16,11 +16,17 @@ var mean = require('meanio'),
   mongoStore = require('connect-mongo')(session),
   helpers = require('view-helpers'),
   flash = require('connect-flash'),
+_ = require('lodash'),
   config = mean.loadConfig();
 
 function onAggregatedSrc(loc,ext,res,next,data){
-  res.locals.aggregatedassets[loc][ext] = data;
-  next && next();
+    res.locals.aggregatedassets[loc][ext] = data;
+    next && next();
+}
+
+function onAggregatedThemeSrc(loc,ext,res,next,data){
+    res.locals.aggregatedassets.theme[loc][ext] = res.locals.aggregatedassets.theme[loc][ext].concat(data);
+    next && next();
 }
 
 module.exports = function(app, passport, db) {
@@ -78,14 +84,25 @@ module.exports = function(app, passport, db) {
 
   // Add assets to local variables
   app.use(function(req, res, next) {
-      console.log('LOCAL ' + res.locals.test);
+      //Discover Theme here
+    req.theme = mean.Theme.discoverTheme(req); 
+    
     //res.locals.assets = assets;
-    res.locals.aggregatedassets = {header:{},footer:{}};
+    res.locals.aggregatedassets = {header:{},footer:{},theme:{header:{js:[],css:[],styl:[]},footer:{js:[],css:[],styl:[]}}};
 
     mean.aggregatedsrc('css', 'header', onAggregatedSrc.bind(null,'header','css',res,null));
     mean.aggregatedsrc('js', 'header', onAggregatedSrc.bind(null,'header','js',res,null));
     mean.aggregatedsrc('css', 'footer', onAggregatedSrc.bind(null,'footer','css',res,null));
-    mean.aggregatedsrc('js', 'footer', onAggregatedSrc.bind(null,'footer','js',res,next));
+    mean.aggregatedsrc('js', 'footer', onAggregatedSrc.bind(null,'footer','js',res,null));
+    
+    mean.aggregatedthemesrc('js', req.theme.parentTheme, onAggregatedThemeSrc.bind(null,'footer','js',res,null));
+    mean.aggregatedthemesrc('js', req.theme.childTheme, onAggregatedThemeSrc.bind(null,'footer','js',res,null));
+    mean.aggregatedthemesrc('css', req.theme.parentTheme, onAggregatedThemeSrc.bind(null,'header','css',res,null));
+    mean.aggregatedthemesrc('css', req.theme.childTheme, onAggregatedThemeSrc.bind(null,'header','css',res,null));
+    //special stylus stuff
+    mean.aggregatedThemes('styl', req.theme.parentTheme, onAggregatedThemeSrc.bind(null,'header','styl',res,null));
+    mean.aggregatedThemes('styl', req.theme.childTheme, onAggregatedThemeSrc.bind(null,'header','styl',res,next));
+    
   });
 
   // Express/Mongo session storage

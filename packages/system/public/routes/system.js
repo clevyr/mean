@@ -50,7 +50,7 @@ angular.module('mean.system').provider('$meanState', ['$stateProvider', '$viewPa
 angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider',
   function($meanStateProvider, $urlRouterProvider) {
     // For unmatched routes:
-    $urlRouterProvider.otherwise('/');
+    //$urlRouterProvider.otherwise('/');
     
     // // Dynamically add states/routes for themes
     // // 1) Layouts
@@ -79,15 +79,16 @@ angular.module('mean.system').config(['$meanStateProvider', '$urlRouterProvider'
     // }
 
     // states for my app
-    $meanStateProvider
-      .state('home', {
-        url: '/',
-        templateUrl: 'system/views/index.html'
-      });      
+    // $meanStateProvider
+    //   .state('home', {
+    //     url: '/',
+    //     templateUrl: 'system/views/index.html'
+    //   });    
   }
 ]).config(['$locationProvider',
   function($locationProvider) {
     //$locationProvider.hashPrefix('!');
+    //$locationProvider.html5Mode(true);
     $locationProvider.html5Mode(true).hashPrefix('!');
   }
 ]).run(function($rootScope){

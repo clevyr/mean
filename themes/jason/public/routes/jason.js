@@ -6,15 +6,13 @@ angular.module('mean.jason').config(['$meanStateProvider', '$urlRouterProvider',
     // states for my app
     // states for my app
     $meanStateProvider
-      .state('jason', {
-        url: '/jason',
+      .state('main.home', {
+        url: '/',
         templateUrl: 'jason/views/index.html'
+      })
+      .state('main.jason', {
+        url: '/jason/',
+        templateUrl: 'jason/views/jason.html'
       });
 }
-]).config(['$locationProvider',
-  function($locationProvider) {
-    //$locationProvider.hashPrefix('!');
-    //$locationProvider.hashPrefix('');
-    $locationProvider.html5Mode(true).hashPrefix('!');
-  }
 ]);

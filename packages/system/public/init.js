@@ -29,4 +29,11 @@ modules = modules.concat(packageModules);
 modules = modules.concat(themeModules);
 
 // Combined modules
-angular.module('mean', modules);
+angular.module('mean', modules).config(['$locationProvider',
+  function($locationProvider) {
+    //$locationProvider.hashPrefix('!');
+    //$locationProvider.hashPrefix('');
+    $locationProvider.html5Mode(true).hashPrefix('!');
+    //$locationProvider.html5Mode(true);
+  }
+]);

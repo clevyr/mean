@@ -19,7 +19,7 @@
   <base href="/">
 
   <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css">
-
+  
   {% for file in aggregatedassets.header.css %}
     <link rel="stylesheet" href="{{file}}">
   {% endfor %}
@@ -27,8 +27,32 @@
   {% for file in aggregatedassets.footer.css %}
     <link rel="stylesheet" href="{{file}}">
   {% endfor %}
-
+  
+  {% for file in aggregatedassets.theme.footer.css %}
+    <link rel="stylesheet" href="{{file}}">
+  {% endfor %}
+  
+  {% for file in aggregatedassets.theme.header.css %}
+    <link rel="stylesheet" href="{{file}}">
+  {% endfor %}
+  
+  {% for file in aggregatedassets.theme.footer.styl %}
+    <style>
+    {{file}}
+    </style>
+  {% endfor %}
+  
+  {% for file in aggregatedassets.theme.header.styl %}
+    <style>
+    {{file}}
+    </style>
+  {% endfor %}
+  
   {% for file in aggregatedassets.header.js %}
+    <script type="text/javascript" src="{{file}}"></script>
+  {% endfor %}
+  
+  {% for file in aggregatedassets.theme.header.js %}
     <script type="text/javascript" src="{{file}}"></script>
   {% endfor %}
 

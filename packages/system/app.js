@@ -7,7 +7,7 @@ var Module = require('meanio').Module,
   favicon = require('serve-favicon'),
   express = require('express');
   
-  //var index = require('./server/controllers/index');
+  var index = require('./server/controllers/index');
 
 var SystemPackage = new Module('system');
 
@@ -34,7 +34,7 @@ SystemPackage.register(function(app, auth, database) {
   app.use(express.static(__dirname + '/public/assets/static'));
   
   //Set Default Template - For when a route is not found load up default index.html
-  //SystemPackage.setDefaultTemplate(index.render);
+  SystemPackage.setDefaultTemplate(index.render);
 
   return SystemPackage;
 });
